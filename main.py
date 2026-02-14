@@ -19,7 +19,7 @@ DET_SIZE = (640, 640)
 USE_GPU = False
 
 # ==========================
-# INIT MODEL
+# MODEL INITIALIZATION
 # ==========================
 
 ctx_id = 0 if USE_GPU else -1
@@ -76,7 +76,7 @@ def load_face_db():
 
 
 # ==========================
-# REALTIME FPS METRICS
+# REALTIME RECOGNITION
 # ==========================
 
 def realtime_recognition(db):
@@ -149,7 +149,7 @@ def realtime_recognition(db):
 
 
 # ==========================
-# OFFLINE METRICS
+# EVALUATION METRICS
 # ==========================
 
 def evaluate_metrics(db):
