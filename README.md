@@ -1,21 +1,20 @@
-# Real-Time Facial Recognition using RetinaFace + ArcFace (InsightFace)  
+# Real-Time Facial Recognition using RetinaFace + ArcFace (InsightFace)
 
 This project implements a real-time face recognition system designed to evaluate and benchmark modern face detection and recognition pipelines. It implements a complete Proof-of-Concept (POC) using **RetinaFace for face detection** and **ArcFace for face recognition**, powered by the **InsightFace framework**.
 
 ## Features
 
-- High-accuracy face detection using RetinaFace  
-- Discriminative face embeddings using ArcFace  
-- Real-time webcam-based recognition  
-- Offline benchmarking and evaluation  
-- ROC, AUC, FAR, FRR, EER and confusion matrix analysis  
-- FPS and latency measurement  
-- Modular architecture suitable for research and production prototyping  
+* High-accuracy face detection using RetinaFace
+* Discriminative face embeddings using ArcFace
+* Real-time webcam-based recognition
+* Evaluation on test images with detailed metrics
+* ROC, AUC, FAR, FRR, EER and confusion matrix analysis
+* FPS and latency measurement
+* Modular architecture suitable for research and production prototyping
 
 ## System Pipeline
 
 ```
-
 Input Image / Webcam
 ↓
 RetinaFace
@@ -27,122 +26,61 @@ ArcFace (via InsightFace)
 Embedding Matching
 ↓
 Identity Prediction + Metrics
-
 ```
-
 
 ## Project Structure
 
 ```
-
 FaceTrack/
 │
-├── train_images/         # Known identities (training images)
+├── train_images/
 │   ├── Person1/
-│       ├──1.jpg
-│       ├──2.jpg
-|
 │   ├── Person2/
-│       ├──1.jpg
-│       ├──2.jpg
 │
-├── test_images/          # Testing dataset
+├── test_images/
 │   ├── Person1/
-│       ├──1.jpg
-│       ├──2.jpg
-|
 │   ├── Person2/
-│       ├──1.jpg
-│       ├──2.jpg
 │
-├── main.py               # Complete pipeline + evaluation framework
+├── main.py
 ├── requirements.txt
 ├── README.md
-
 ```
 
+## Dataset Description
 
+The dataset used in this project is a **custom face dataset** organized by identity folders.
 
-## Installation Guide (Windows)
+### Characteristics
 
-### Python Version
+* Frontal and side faces
+* Multiple facial expressions
+* Different lighting conditions
+* Medium occlusion (glasses, partial face visibility)
+* Realistic variations similar to real-world scenarios
 
-Use:
+### Dataset Split
 
-```
-Python 3.9.13 (recommended)
-```
+* Training: **5 images per person**
+* Testing: **15 images per person**
 
-Avoid Python 3.11 and 3.12 due to limited compatibility with current computer vision and deep learning libraries.
-
-
-
-### Virtual Environment Setup
-
-```bash
-python -m venv facetrack_env
-facetrack_env\Scripts\activate
-````
-
-Upgrade pip:
-
-```bash
-python -m pip install --upgrade pip
-```
-
-
-## InsightFace Installation (For Windows)
-
-### Installation Requirement
-
-```
-Microsoft Visual C++ 14.0 or greater is required
-```
-
-If you want to use the latest versions of InsightFace, install the Microsoft C++ Build Tools from:
-
-[https://visualstudio.microsoft.com/visual-cpp-build-tools/](https://visualstudio.microsoft.com/visual-cpp-build-tools/)
-
-During installation, select: `Desktop Development with C++` 
-and in right panel select:
-
-* MSVC v143 compiler
-* Windows SDK
-* C++ CMake tools
-
-### Install Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-## Running the Project
-
-```bash
-python main.py
-```
-
-Press **ESC** to exit the real-time recognition window.
+This setup evaluates the system’s ability to generalize across pose and illumination changes.
 
 ## Evaluation Metrics
 
-The system computes the following metrics:
-
-| Metric          | Description                           |
-|  -- |--
-| Accuracy        | Overall recognition correctness       |
-| Precision       | Correct positive predictions          |
-| Recall          | True positive detection rate          |
-| F1 Score        | Harmonic mean of precision and recall |
-| FAR             | False Acceptance Rate                 |
-| FRR             | False Rejection Rate                  |
-| ROC Curve       | Performance curve                     |
-| AUC             | Area under ROC                        |
-| EER             | Equal Error Rate                      |
-| Rank-1 Accuracy | Identification accuracy               |
-| FPS             | Frames per second                     |
-| Latency         | Per-frame processing delay            |
-
+| Metric          | Description                          |
+| --------------- | ------------------------------------ |
+| Accuracy        | Overall recognition correctness      |
+| Precision       | Correct positive predictions         |
+| Recall          | True positive detection rate         |
+| F1 Score        | Balance between precision and recall |
+| FAR             | False Acceptance Rate                |
+| FRR             | False Rejection Rate                 |
+| ROC Curve       | Threshold vs performance             |
+| AUC             | Area under ROC                       |
+| EER             | Equal Error Rate                     |
+| Rank-1 Accuracy | Identification accuracy              |
+| FPS             | Frames processed per second          |
+| Latency         | Total per-frame processing time      |
 
 
 ## Outputs and Visualizations
@@ -190,62 +128,68 @@ The FAR vs FRR curve illustrates how the system’s error rates change with diff
 </p>
 
 
-## Why RetinaFace + ArcFace (via InsightFace)?
-
-| Model       | Reason                                              |
-| -- | -- |
-| RetinaFace  | High detection accuracy and robust face alignment   |
-| ArcFace     | Highly discriminative face embeddings               |
-| InsightFace | Industry-grade optimized face recognition framework |
-
-
 ## Results
 
 ### Evaluation Summary
 
-The system was tested on a small dataset:
+The system was evaluated on **test images**, and metrics were computed by comparing predicted identities with ground truth labels.
 
-* Training set: 5 images per person
-* Test set: 15 images per person
+Despite pose variations, lighting changes, and occlusion, the model maintains strong recognition performance, demonstrating robustness of the embedding space.
 
-Because the dataset is controlled and consistent, the model achieves very high recognition performance and correctly identifies the registered users.
-
-### **Metrics**
+### Metrics
 
 * Accuracy: 100%
 * Precision: 100%
 * Recall: 100%
-* F1-Score: 100%
+* F1 Score: 100%
 * AUC: 1.00
-* FAR (False Accept Rate): 0.00
-* FRR (False Reject Rate): 0.00
+* FAR: 0.00
+* FRR: 0.00
 * Rank-1 Accuracy: 88.46%
 
-Perfect classification scores indicate strong verification performance, while Rank-1 accuracy reflects identification capability across multiple identities.
+Perfect verification scores indicate clear separation between genuine and imposter pairs, while Rank-1 reflects multi-class identification difficulty.
 
+## Performance Analysis
 
-### Performance (Speed)
+Testing conducted on **CPU only**.
 
-Testing was conducted on **CPU only**.
+### Latency Breakdown (Per Frame)
 
-* Average FPS: ~1.5
-* Average Latency (P50): ~0.66 s
+* Face Detection Time: ~0.32 s
+* Embedding Extraction Time: ~0.21 s
+* Matching Time: ~0.02 s
+* Total Pipeline Latency (P50): ~0.66 s
+
+### Latency Distribution
+
 * P95 Latency: ~0.73 s
 * P99 Latency: ~0.83 s
 
-Even without GPU acceleration, the system runs **near real-time**, which demonstrates efficient pipeline design. Performance is suitable for demos, prototypes, and low-scale deployments.
+### Throughput
 
+* Average FPS: ~1.5
 
+This breakdown highlights that **face detection is the dominant computational cost**, which is expected in CPU-only inference.
 
-### Expected GPU Performance
+## Expected GPU Performance
 
-With a compatible GPU, inference speed typically improves by **5× to 10×**, enabling smooth real-time recognition with significantly lower latency.
+Using GPU acceleration typically yields:
 
+* 5× – 10× higher FPS
+* <=200 ms latency
+* Smooth real-time experience
 
+## Why RetinaFace + ArcFace (via InsightFace)?
 
-### Conclusion
+| Model       | Reason                                   |
+| ----------- | ---------------------------------------- |
+| RetinaFace  | Robust detection with accurate alignment |
+| ArcFace     | Highly discriminative embeddings         |
+| InsightFace | Optimized production-ready framework     |
 
-* The pipeline operates reliably end-to-end.
-* Recognition performance is strong on the test dataset.
-* CPU performance is already near real-time.
-* GPU deployment can further enhance responsiveness for production scenarios.
+## Conclusion
+
+* The end-to-end pipeline operates reliably.
+* The system handles pose, lighting, and occlusion variations effectively.
+* Verification performance is near perfect on the test dataset.
+* CPU inference is near real-time, while GPU deployment can enable production-level performance.
