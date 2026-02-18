@@ -31,19 +31,34 @@ Identity Prediction + Metrics
 ## Project Structure
 
 ```
-FaceTrack/
+RetinaFace-ArcFace_Facial_Recognition/
 │
-├── train_images/
-│   ├── Person1/
-│   ├── Person2/
+├── images_dataset/
+│     │
+│     ├── train_images/         # Known identities (training images)
+│     │      ├── Person1/
+│     │      │   ├── 1.jpg
+│     │      │   ├── 2.jpg
+│     │      │
+│     │      ├── Person2/
+│     │            ├── 1.jpg
+│     │            ├── 2.jpg
+│     │
+│     ├── test_images/          # Testing dataset
+│             ├── Person1/
+│             │   ├── 1.jpg
+│             │   ├── 2.jpg
+│             │
+│             ├── Person2/
+│                  ├── 1.jpg
+│                  ├── 2.jpg
 │
-├── test_images/
-│   ├── Person1/
-│   ├── Person2/
 │
-├── main.py
+├── main.py               # Complete pipeline + evaluation
 ├── requirements.txt
 ├── README.md
+└── .gitignore
+
 ```
 
 ## Dataset Description
