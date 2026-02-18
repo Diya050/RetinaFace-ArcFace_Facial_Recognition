@@ -83,6 +83,85 @@ This setup evaluates the system’s ability to generalize across pose and illumi
 | Latency         | Total per-frame processing time      |
 
 
+## Getting Started
+
+### Prerequisites
+
+Ensure the following are installed on your system:
+
+* Windows 10 / 11 (64-bit)
+* Python **3.11.x**
+* Microsoft C++ Build Tools (required for some dependencies)
+
+
+### Step 1: Install Python 3.11
+
+Download Python 3.11 from the official site:
+
+[https://www.python.org/downloads/](https://www.python.org/downloads/)
+
+During installation:
+
+* Check **“Add Python to PATH”**
+* Select **Customize installation → Install for all users**
+
+Verify installation:
+
+```powershell
+py -3.11 --version
+```
+
+### Step 2: Create Virtual Environment
+
+Navigate to your project folder:
+
+```powershell
+cd path\to\your\project
+```
+
+Create virtual environment:
+
+```powershell
+py -3.11 -m venv facetrack_env
+```
+
+Activate:
+
+```powershell
+facetrack_env\Scripts\activate
+```
+
+Upgrade pip:
+
+```powershell
+python -m pip install --upgrade pip
+```
+
+
+### Step 3: Install Dependencies
+
+Install required packages:
+
+```powershell
+pip install -r requirements.txt
+```
+
+### Step 4: Running the Pipeline
+
+Activate environment:
+
+```powershell
+facetrack_env\Scripts\activate
+```
+
+Run:
+
+```powershell
+python main.py
+```
+
+
+
 ## Outputs and Visualizations
 
 <p align="center">
