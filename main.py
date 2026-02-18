@@ -7,14 +7,16 @@ from sklearn.metrics import roc_curve, auc, confusion_matrix, precision_score, r
 from tqdm import tqdm
 import seaborn as sns
 import matplotlib.pyplot as plt
+import warnings
 
+warnings.filterwarnings("ignore", category=FutureWarning)
 # ==========================
 # CONFIG
 # ==========================
 
-FACE_DB = "train_images"
-TEST_DB = "test_images"
-THRESHOLD = 0.45
+FACE_DB = "dataset/train"
+TEST_DB = "dataset/test"
+THRESHOLD = 0.55
 DET_SIZE = (640, 640)
 USE_GPU = False
 

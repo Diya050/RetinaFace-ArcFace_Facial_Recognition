@@ -1,2 +1,3 @@
 facetrack_env/
 face_db_embeddings.npy
+dataset/
